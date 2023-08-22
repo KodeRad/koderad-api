@@ -23,6 +23,7 @@ app.get("/toggl", async (req, res) => {
         },
       }
     );
+    console.log(response);
     const data = await response.data;
     const hours = data.projects[8].actual_hours;
     res.status(200).json({ hours });
