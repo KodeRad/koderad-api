@@ -28,6 +28,7 @@ app.get("/toggl", async (req, res) => {
     const hours = data.projects[8].actual_hours;
     res.status(200).json({ hours });
   } catch (error) {
+    console.log(response);
     console.error(error);
   }
 });
