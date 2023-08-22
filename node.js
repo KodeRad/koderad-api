@@ -17,7 +17,9 @@ app.get("/toggl", async (req, res) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Basic ${btoa(`${process.env.AUTH_TOKEN}:api_token`)}`,
+          Authorization: `Basic ${Buffer.from(
+            `${process.env.AUTH_TOKEN}:api_token`
+          )}`,
         },
       }
     );
