@@ -25,9 +25,9 @@ app.get("/toggl", async (req, res) => {
         headers: {
           "Content-Type": "application/json",
           // Authorization: authorizationHeader,
-          Authorization: `Basic ${base64.encode(
+          Authorization: `Basic ${Buffer.from(
             "kondzikaoko@gmail.com:jOo&&Uk*RP90"
-          )}`,
+          ).toString("base64")}`,
         },
       }
     );
