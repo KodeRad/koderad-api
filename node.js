@@ -34,7 +34,7 @@ app.get("/toggl", async (req, res) => {
     const data = await response.json();
     console.log(data);
     const hours = data.data?.projects[8].actual_hours;
-    res.status(200).json({ hours });
+    res.status(200).json({ data });
   } catch (error) {
     console.error(error);
   }
