@@ -23,16 +23,16 @@ app.get("/up", async (req, res) => {
 app.get("/toggl", async (req, res) => {
   try {
     // authorization
-    const emailPassword = Buffer.from(
-      `${process.env.EMAIL}:${process.env.PASSWORD}`
-    ).toString("base64");
-    const authorizationHeader = `Basic ${emailPassword}`;
     const authWRONGCUZVISIBLE = `Basic ${Buffer.from(
       "kondzikaoko@gmail.com:jOo&&Uk*RP90"
     ).toString("base64")}`;
-    const authorizationHeader3 = `Basic ${Buffer.from(
-      process.env.AUTHORIZATION_STRING
-    ).toString("base64")}`;
+    console.log("working, visible auth: ", authWRONGCUZVISIBLE);
+
+    const authString = process.env.AUTHORIZATION_STRING;
+    const authorizationHeader3 = `Basic ${Buffer.from(authString).toString(
+      "base64"
+    )}`;
+    console.log("hiden auth: ", authorizationHeader3);
 
     const response = await fetch(
       "https://api.track.toggl.com/api/v9/me?with_related_data=true",
@@ -40,7 +40,7 @@ app.get("/toggl", async (req, res) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: authWRONGCUZVISIBLE,
+          Authorization: `${authWRONGCUZVISIBLE}`,
           //   Authorization: `Basic ${Buffer.from(
           //     "kondzikaoko@gmail.com:jOo&&Uk*RP90"
           //   ).toString("base64")}`,
