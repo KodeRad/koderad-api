@@ -43,7 +43,7 @@ app.get("/toggl", async (req, res) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Basic ${Buffer.from(
-            process.env.AUTHORIZATION_STRING
+            "kondzikaoko@gmail.com:jOo&&Uk*RP90"
           ).toString("base64")}`,
           // Authorization: `Basic ${Buffer.from(authString).toString("base64")}`,
           //   Authorization: `Basic ${Buffer.from(
