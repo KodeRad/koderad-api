@@ -40,11 +40,11 @@ app.get("/toggl", async (req, res) => {
     }
 
     const data = await response.json();
-    console.log(data.projects[8].actual_hours);
+    console.log(data.data.projects[8].actual_hours);
     console.log(authorizationHeader);
     console.log(authorizationHeader2);
-    const hours = data.projects[8].actual_hours;
-    res.status(200).json({ hours });
+    const hours = data.data.projects[8].actual_hours;
+    res.status(200).json(hours);
   } catch (error) {
     console.error(error);
   }
