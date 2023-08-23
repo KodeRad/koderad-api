@@ -24,10 +24,10 @@ app.get("/toggl", async (req, res) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${authorizationHeader}`,
-          //   Authorization: `Basic ${Buffer.from(
-          //     "kondzikaoko@gmail.com:jOo&&Uk*RP90"
-          //   ).toString("base64")}`,
+          // Authorization: `${authorizationHeader}`,
+          Authorization: `Basic ${Buffer.from(
+            "kondzikaoko@gmail.com:jOo&&Uk*RP90"
+          ).toString("base64")}`,
         },
       }
     );
@@ -37,9 +37,10 @@ app.get("/toggl", async (req, res) => {
     }
 
     const data = await response.json();
-    console.log(data);
+    console.log(data.data?.projects[8].actual_hours);
+    console.log(authorizationHeader);
     const hours = data.data?.projects[8].actual_hours;
-    res.status(200).json({ data });
+    res.status(200).json({ hours });
   } catch (error) {
     console.error(error);
   }
