@@ -21,16 +21,16 @@ app.get("/up", async (req, res) => {
 });
 
 // GLOBAL AUTH TO CHECK LOGS ON NODE .
-const authWRONGCUZVISIBLE = `Basic ${Buffer.from(
-  "kondzikaoko@gmail.com:jOo&&Uk*RP90"
-).toString("base64")}`;
-console.log("visible auth: ", authWRONGCUZVISIBLE);
+// const authWRONGCUZVISIBLE = `Basic ${Buffer.from(
+//   "kondzikaoko@gmail.com:jOo&&Uk*RP90"
+// ).toString("base64")}`;
+// console.log("visible auth: ", authWRONGCUZVISIBLE);
 
-const authString = process.env.AUTHORIZATION_STRING;
-const authorizationHeader3 = `Basic ${Buffer.from(
-  process.env.AUTHORIZATION_STRING
-).toString("base64")}`;
-console.log("hiden auth: ", authorizationHeader3);
+// const authString = process.env.AUTHORIZATION_STRING;
+// const authorizationHeader3 = `Basic ${Buffer.from(
+//   process.env.AUTHORIZATION_STRING
+// ).toString("base64")}`;
+// console.log("hiden auth: ", authorizationHeader3);
 
 app.get("/toggl", async (req, res) => {
   try {
@@ -45,10 +45,6 @@ app.get("/toggl", async (req, res) => {
           Authorization: `Basic ${Buffer.from(
             "kondzikaoko@gmail.com:jOo&&Uk*RP90"
           ).toString("base64")}`,
-          // Authorization: `Basic ${Buffer.from(authString).toString("base64")}`,
-          //   Authorization: `Basic ${Buffer.from(
-          //     "kondzikaoko@gmail.com:jOo&&Uk*RP90"
-          //   ).toString("base64")}`,
         },
       }
     );
@@ -59,8 +55,8 @@ app.get("/toggl", async (req, res) => {
 
     const data = await response.json();
     console.log(data.projects[8].actual_hours);
-    console.log(authWRONGCUZVISIBLE);
-    console.log(authorizationHeader3);
+    // console.log(authWRONGCUZVISIBLE);
+    // console.log(authorizationHeader3);
     const hours = data.projects[8].actual_hours;
     res.status(200).json(hours);
   } catch (error) {
