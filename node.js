@@ -30,6 +30,9 @@ app.get("/toggl", async (req, res) => {
     const authorizationHeader2 = `Basic ${Buffer.from(
       "kondzikaoko@gmail.com:jOo&&Uk*RP90"
     ).toString("base64")}`;
+    const authorizationHeader3 = `Basic ${Buffer.from(
+      process.env.AUTHORIZATION_STRING
+    ).toString("base64")}`;
 
     const response = await fetch(
       "https://api.track.toggl.com/api/v9/me?with_related_data=true",
@@ -37,7 +40,7 @@ app.get("/toggl", async (req, res) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: authorizationHeader,
+          Authorization: authorizationHeader3,
           //   Authorization: `Basic ${Buffer.from(
           //     "kondzikaoko@gmail.com:jOo&&Uk*RP90"
           //   ).toString("base64")}`,
