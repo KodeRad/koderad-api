@@ -13,7 +13,7 @@ app.listen(PORT, () => console.log(`It's alive on http://localhost:${PORT}`));
 app.get("/up", async (req, res) => {
   try {
     res.status(200).send({
-      message: "It's all right Mr White!",
+      message: "Server's up and running!💥",
     });
   } catch (error) {
     console.error(error);
@@ -37,7 +37,7 @@ app.get("/toggl", async (req, res) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: authorizationHeader,
+          Authorization: process.env.AUTHORIZATION_STRING,
           // Authorization: `Basic ${Buffer.from(
           //   "kondzikaoko@gmail.com:jOo&&Uk*RP90"
           // ).toString("base64")}`,
