@@ -26,11 +26,13 @@ app.get("/up", async (req, res) => {
 // ).toString("base64")}`;
 // console.log("visible auth: ", authWRONGCUZVISIBLE);
 
-// const authString = process.env.AUTHORIZATION_STRING;
-// const authorizationHeader3 = `Basic ${Buffer.from(
-//   process.env.AUTHORIZATION_STRING
-// ).toString("base64")}`;
-// console.log("hiden auth: ", authorizationHeader3);
+console.log(process.env.AUTHORIZATION_STRING);
+
+const authorizationHeader3 = `Basic ${Buffer.from(
+  process.env.AUTHORIZATION_STRING
+).toString("base64")}`;
+
+console.log("hiden auth: ", authorizationHeader3);
 
 app.get("/toggl", async (req, res) => {
   try {
