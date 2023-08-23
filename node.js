@@ -1,5 +1,5 @@
 const express = require("express");
-const axios = require("axios"); // Import fetch
+const fetch = require("node-fetch"); // Import fetch
 const app = express();
 const PORT = 8080;
 
@@ -12,9 +12,10 @@ app.listen(PORT, () => console.log(`It's alive on http://localhost:${PORT}`));
 
 app.get("/toggl", async (req, res) => {
   try {
-    const response = await axios.get(
+    const response = await fetch(
       "https://api.track.toggl.com/api/v9/me?with_related_data=true",
       {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Basic ${Buffer.from(
@@ -23,10 +24,12 @@ app.get("/toggl", async (req, res) => {
         },
       }
     );
-    const data = await response.data;
+    console.log(response);
+    const data = await response.json();
     const hours = data.projects[8].actual_hours;
     res.status(200).json({ hours });
   } catch (error) {
+    // console.log(response);
     console.error(error);
   }
 });
