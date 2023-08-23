@@ -20,28 +20,8 @@ app.get("/up", async (req, res) => {
   }
 });
 
-// GLOBAL AUTH TO CHECK LOGS ON NODE .
-const authWRONGCUZVISIBLE = `Basic ${Buffer.from(
-  "kondzikaoko@gmail.com:jOo&&Uk*RP90"
-).toString("base64")}`;
-console.log("visible auth: ", authWRONGCUZVISIBLE);
-
-console.log(process.env.EMAIL);
-
-const email = process.env.EMAIL;
-const password = process.env.PASSWORD;
-const emailPassword = `${process.env.EMAIL}:${process.env.PASSWORD}`;
-
-const authorizationHeader3 = `Basic ${Buffer.from(emailPassword).toString(
-  "base64"
-)}`;
-
-console.log("hiden auth: ", authorizationHeader3);
-
 app.get("/toggl", async (req, res) => {
   try {
-    // authorization
-
     const response = await fetch(
       "https://api.track.toggl.com/api/v9/me?with_related_data=true",
       {
@@ -60,9 +40,6 @@ app.get("/toggl", async (req, res) => {
     }
 
     const data = await response.json();
-    console.log(data.projects[8].actual_hours);
-    // console.log(authWRONGCUZVISIBLE);
-    // console.log(authorizationHeader3);
     const hours = data.projects[8].actual_hours;
     res.status(200).json(hours);
   } catch (error) {
