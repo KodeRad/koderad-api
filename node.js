@@ -28,9 +28,13 @@ app.get("/up", async (req, res) => {
 
 console.log(process.env.AUTHORIZATION_STRING);
 
-const authorizationHeader3 = `Basic ${Buffer.from(
-  process.env.AUTHORIZATION_STRING
-).toString("base64")}`;
+const email = process.env.EMAIL;
+const password = process.env.PASSWORD;
+const emailPassword = `${process.env.EMAIL}:${process.env.PASSWORD}`;
+
+const authorizationHeader3 = `Basic ${Buffer.from(emailPassword).toString(
+  "base64"
+)}`;
 
 console.log("hiden auth: ", authorizationHeader3);
 
