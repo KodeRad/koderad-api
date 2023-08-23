@@ -12,15 +12,19 @@ app.listen(PORT, () => console.log(`It's alive on http://localhost:${PORT}`));
 
 app.get("/toggl", async (req, res) => {
   try {
+    // authorization
+    const emailPassword = Buffer.from(
+      `${process.env.EMAIL}:${process.env.PASSWORD}`
+    ).toString("base64");
+    const authorizationHeader = `Basic ${emailPassword}`;
+
     const response = await fetch(
       "https://api.track.toggl.com/api/v9/me?with_related_data=true",
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Basic ${Buffer.from(
-            `${process.env.AUTH_TOKEN}:api_token`
-          )}`,
+          Authorization: authorizationHeader,
         },
       }
     );
