@@ -27,7 +27,7 @@ app.get("/toggl", async (req, res) => {
       `${process.env.EMAIL}:${process.env.PASSWORD}`
     ).toString("base64");
     const authorizationHeader = `Basic ${emailPassword}`;
-    const authorizationHeader2 = `Basic ${Buffer.from(
+    const authWRONGCUZVISIBLE = `Basic ${Buffer.from(
       "kondzikaoko@gmail.com:jOo&&Uk*RP90"
     ).toString("base64")}`;
     const authorizationHeader3 = `Basic ${Buffer.from(
@@ -40,7 +40,7 @@ app.get("/toggl", async (req, res) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: authorizationHeader3,
+          Authorization: authWRONGCUZVISIBLE,
           //   Authorization: `Basic ${Buffer.from(
           //     "kondzikaoko@gmail.com:jOo&&Uk*RP90"
           //   ).toString("base64")}`,
