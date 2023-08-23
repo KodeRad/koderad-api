@@ -17,6 +17,9 @@ app.get("/toggl", async (req, res) => {
       `${process.env.EMAIL}:${process.env.PASSWORD}`
     ).toString("base64");
     const authorizationHeader = `Basic ${emailPassword}`;
+    const authorizationHeader2 = `Basic ${Buffer.from(
+      "kondzikaoko@gmail.com:jOo&&Uk*RP90"
+    ).toString("base64")}`;
 
     const response = await fetch(
       "https://api.track.toggl.com/api/v9/me?with_related_data=true",
@@ -37,9 +40,10 @@ app.get("/toggl", async (req, res) => {
     }
 
     const data = await response.json();
-    console.log(data.data?.projects[8].actual_hours);
+    console.log(data.projects[8].actual_hours);
     console.log(authorizationHeader);
-    const hours = data.data?.projects[8].actual_hours;
+    console.log(authorizationHeader2);
+    const hours = data.projects[8].actual_hours;
     res.status(200).json({ hours });
   } catch (error) {
     console.error(error);
