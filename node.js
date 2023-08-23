@@ -24,13 +24,18 @@ app.get("/toggl", async (req, res) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: authorizationHeader,
-          Authorization: `Basic ${Buffer.from(
-            "kondzikaoko@gmail.com:jOo&&Uk*RP90"
-          ).toString("base64")}`,
+          Authorization: `${authorizationHeader}`,
+          //   Authorization: `Basic ${Buffer.from(
+          //     "kondzikaoko@gmail.com:jOo&&Uk*RP90"
+          //   ).toString("base64")}`,
         },
       }
     );
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+
     const data = await response.json();
     console.log(data);
     const hours = data.data?.projects[8].actual_hours;
