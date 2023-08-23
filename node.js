@@ -3,7 +3,7 @@ const fetch = require("node-fetch"); // Import fetch
 const app = express();
 const PORT = 8080;
 
-// for encrypting API
+// for encrypting .env
 require("dotenv").config();
 
 app.use(express.json());
@@ -21,12 +21,12 @@ app.get("/up", async (req, res) => {
 });
 
 // GLOBAL AUTH TO CHECK LOGS ON NODE .
-// const authWRONGCUZVISIBLE = `Basic ${Buffer.from(
-//   "kondzikaoko@gmail.com:jOo&&Uk*RP90"
-// ).toString("base64")}`;
-// console.log("visible auth: ", authWRONGCUZVISIBLE);
+const authWRONGCUZVISIBLE = `Basic ${Buffer.from(
+  "kondzikaoko@gmail.com:jOo&&Uk*RP90"
+).toString("base64")}`;
+console.log("visible auth: ", authWRONGCUZVISIBLE);
 
-console.log(process.env.AUTHORIZATION_STRING);
+console.log(process.env.EMAIL);
 
 const email = process.env.EMAIL;
 const password = process.env.PASSWORD;
@@ -49,7 +49,7 @@ app.get("/toggl", async (req, res) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Basic ${Buffer.from(
-            "kondzikaoko@gmail.com:jOo&&Uk*RP90"
+            process.env.AUTHORIZATION_STRING
           ).toString("base64")}`,
         },
       }
