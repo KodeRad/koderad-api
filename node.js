@@ -10,14 +10,10 @@ app.use(express.json());
 
 app.listen(PORT, () => console.log(`It's alive on http://localhost:${PORT}`));
 
-app.get("/up", async (req, res) => {
-  try {
-    res.status(200).send({
-      message: "Server's up and running!💥",
-    });
-  } catch (error) {
-    console.error(error);
-  }
+app.get("/up", (req, res) => {
+  res.status(200).send({
+    message: "Server's up and running!💥",
+  });
 });
 
 app.get("/toggl", async (req, res) => {
